@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuel Station Signup</title>
+    {% comment %} tailwind css cdn {% endcomment %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        input:focus{
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-pink-900 pt-2 pb-4">
+        <h1 class="text-white text-3xl ml-8">Automatic Fuel Management System </h1>
+    </div>
+    <div class="flex items-center justify-center h-screen">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.username}}
+            <input type="text" name="station_name" id="station_name" placeholder="Fuel Station Name" class="border-gray-100 border-solid border-4 rounded-md mb-4 pl-2 h-10 mr-2" required><br>
+            <input type="text" name="station_address" id="station_address"  placeholder="Address" class="border-gray-100 border-solid border-4 rounded-md mb-4 pl-2 h-10 mr-2" required>
+            <input type="tel" name="phone_no" id="phone_no" placeholder="Phone number" class="border-gray-100 border-solid border-4 rounded-md mb-4 pl-2 h-10 mr-2" required><br>
+            <select name="city" id="city" class="border-gray-100 border-solid border-4 rounded-md mb-4 pl-2 h-10 mr-2" required>
+                <option value="">Select a city</option>
+                <option value="Trincomalee">Trincomalee</option>
+                <option value="Batticalo">Batticalo</option>
+                <option value="Ambara">Ambara</option>
+            </select>
+            <input type="text" id="regnumber" name="regnumber" placeholder="Register number" class="border-gray-100 border-solid border-4 rounded-md mb-4 pl-2 h-10 w-2/3" required><br>
+            {{form.password1}}
+            {{form.password2}}<br>
+
+            {% if messages %}
+                {% for message in messages %}
+                <div class="bg-green-200 min-h-fit text-center border-2 border-green-600 text-green-600">
+                    <p>{{message}}</p>
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                    <div class="bg-rose-200 min-h-fit text-center border-2 border-rose-600 text-rose-600">
+                        <p>{{error}}</p>
+                    </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+            
+            
+            <input type="submit" value="Create Station"  class=" text-center bg-pink-900 w-64 h-10 rounded-md text-white mt-4 w-full">
+        </form>
+    </div>
+
+    <script>
+        const Phone = document.getElementById("phone_no")
+        Phone.addEventListener("focusout",function(){
+        var validRegex = /^(?:0|94|\+94)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|912)(0|2|3|4|5|7|9)|7(0|1|2|4|5|6|7|8)\d)\d{6}$/;
+        if(Phone.value.match(validRegex)){
+                Phone.classList.remove("border-red-600")
+                Phone.classList.remove("border-2")
+                Phone.classList.add("border-gray-100")
+                Phone.classList.add("border-4")
+
+            
+        }
+        else{
+                Phone.focus()
+                Phone.classList.add("border-red-600")  
+                Phone.classList.add("border-2")
+        }
+        
+        })
+    </script>
+</body>
+</html>
