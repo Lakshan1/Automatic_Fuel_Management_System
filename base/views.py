@@ -18,9 +18,9 @@ from .decorators import unauthenticated_user
 # auth_token = 'de1b808cfdc2914ae80aab343f2b0e43'
 # verify_sid = 'VA7bd85bed5b1a7aeffac5d6052e051a44'
 
-account_sid = 'AC9e25948312ff22e1ea98d94c56cd927d'
-auth_token = 'd6078affbd4caf43a2dab9b749f078c7'
-verify_sid = 'VA94b9eeef9ffc8841b836e6ac777a7e12'
+account_sid = os.environ.get('Account_sid')
+auth_token = os.environ.get('Auth_token')
+verify_sid = os.environ.get('Service_sid')
 
 client = Client(account_sid, auth_token)
 
