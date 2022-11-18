@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'automatic_fuel_management_system.wsgi.application'
 import dj_database_url
 DATABASES = {
     'default': dj_database_url.config(     
-        default='postgresql://postgres:postgres@localhost:5432/automatic_fuel_management_system',
+        default='postgres://lakshan:8q5vvKm4VhUet4Uqo39V8ScaKQKZU4aC@dpg-cdrfpuda49909bjs8h5g-a/automatic_fuel_management_system',
         conn_max_age=600    
     )
 }
