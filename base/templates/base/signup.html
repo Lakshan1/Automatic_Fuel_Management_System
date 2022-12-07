@@ -34,14 +34,15 @@
             <input class="border-gray-100 border-solid border-4 rounded-md mb-4  mr-2 pl-2 h-10 pl-2" type="text" name="VechileNum" id="VechileNum" placeholder="ABC-XXXX" required><br>
              <select  class="border-gray-100 border-solid border-4 rounded-md mb-4 mr-2 pl-2 h-10 w-full" name="vechicle_type" id="vechicle_type" class="" required>
                 <option class="border-gray-100 border-solid border-4 rounded-md mb-4 mr-2 pl-2 h-10 " value="none" selected disabled hidden>Vechile Type</option>
-                <option class="border-gray-100 border-solid border-4 rounded-md mb-4 mr-2 pl-2 h-10" value="Two wheeler" >Two wheeler</option>
-                <option  class="border-gray-100 border-solid border-4 rounded-md mb-4 mr-2 pl-2 h-10 "value="Three wheeler" >Three wheeler</option>
-                <option class="border-gray-100 border-solid border-4 rounded-md mb-4 mr-2 pl-2 h-10" value="Heavy vechile" >Heavy vechile</option>
+                {% for type in VechicleTypes %}
+                    <option class="border-gray-100 border-solid border-4 rounded-md mb-4 mr-2 pl-2 h-10" value="{{type.name}}" >{{type.name}}</option>
+                {% endfor %}
             </select>
              <select  class="border-gray-100 border-solid border-4 rounded-md mb-4 mr-2 pl-2 h-10 w-full" name="Fuel_type" id="Fuel_type" class="" required>
                 <option class="border-gray-100 border-solid border-4 rounded-md mb-4 mr-2 pl-2 h-10 " value="none" selected disabled hidden>Fuel Type</option>
-                <option class="border-gray-100 border-solid border-4 rounded-md mb-4 mr-2 pl-2 h-10" value="Petrol" >Petrol</option>
-                <option  class="border-gray-100 border-solid border-4 rounded-md mb-4 mr-2 pl-2 h-10 "value="Diesel" >Diesel</option>
+                {% for type in fuelTypes %}
+                <option class="border-gray-100 border-solid border-4 rounded-md mb-4 mr-2 pl-2 h-10" value="{{type.name}}" >{{type.name}}</option>
+                {% endfor %}
             </select><br>
             {{form.password1}}
             {{form.password2}}<br>

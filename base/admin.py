@@ -7,3 +7,5 @@ admin.site.register(VechicleUsers)
 admin.site.register(VechicleTypes)
 admin.site.register(Stations)
 admin.site.register(Price)
+admin.site.register(FuelTypes)
+

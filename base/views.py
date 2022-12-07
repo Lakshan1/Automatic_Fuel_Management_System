@@ -37,6 +37,7 @@ def index(request):
 def vechicleUsersSignup(request):
     form = CreateUserForm()
     vechicleTypes = VechicleTypes.objects.all()
+    fuelTypes = FuelTypes.objects.all()
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         username = request.POST.get('username')
@@ -63,7 +64,7 @@ def vechicleUsersSignup(request):
                 fuel_type = fuel_type
             )
             return redirect("verify", username=username, phonenumber=phone_no)
-    context = {"form":form,'VechicleTypes':vechicleTypes}
+    context = {"form":form,'VechicleTypes':vechicleTypes,'fuelTypes':fuelTypes}
     return render(request,"base/signup.html",context)
 
 @unauthenticated_user

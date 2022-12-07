@@ -9,6 +9,12 @@ class VechicleTypes(models.Model):
     def __str__(self):
         return self.name
 
+class FuelTypes(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
 class VechicleUsers(models.Model):
     user = models.OneToOneField(User, blank=False, null=False, on_delete=models.CASCADE)
     username = models.CharField(max_length=100)
