@@ -29,7 +29,8 @@ client = Client(account_sid, auth_token)
 def index(request):
     user = VechicleUsers.objects.get(user=request.user)
     vechicleType = VechicleTypes.objects.get(name=user.vechicle_type)
-    context = {'user':user,'vechicleType':vechicleType}
+    price = Price.objects.get(type=user.fuel_type)
+    context = {'user':user,'vechicleType':vechicleType,'price':price}
     return render(request,"base/index.html",context)
 
 @unauthenticated_user

@@ -102,7 +102,7 @@
    <script>
     const email=document.getElementById("email")
     email.addEventListener("focusout",function(){
-        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        var validRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[c][o][m]))$/;
         if(email.value.match(validRegex)){
             email.classList.remove("border-red-600")
             email.classList.remove("border-2")

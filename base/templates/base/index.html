@@ -15,6 +15,69 @@
         .navbar{
             justify-content: space-between;
         }
+        .body{
+            margin-top: 50px;
+            margin-left: 150px;
+            margin-right: 150px;
+        }
+        .body>.header{
+            display: flex;
+        }
+        .body>.header>i{
+            margin-right: 10px;
+        }
+        .body>.details{
+            margin-top: 70px;
+            text-transform: uppercase;
+            display: flex;
+        }
+        .body>.details>.left-details{
+            margin-right: 300px;
+        }
+        .body>.details>.left-details>h2{
+            margin-bottom: 30px;
+        }
+        .body>.details>.right-details>h2{
+            margin-bottom: 30px;
+        }
+        .secondary-details{
+            margin-top: 70px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .cards-container{
+            display: flex;
+            justify-content: space-between;
+            width: 70%;
+        }
+        .secondary-details>.cards-container>.card{
+            width: 300px;
+            height: 200px;
+            border-radius: 15px;
+        }
+        .secondary-details>.cards-container>.card>i{
+            color: white;
+            font-size: 30px;
+            margin-left: 20px;
+            margin-left: 20px;
+        }
+        .secondary-details>.cards-container>.card>h2{
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+        .secondary-details>.cards-container>.card>.litre{
+            margin-top: 20px;
+        }
+        .secondary-details>.price-details{
+            width: 30%;
+            padding-left: 100px;
+        }
+        .secondary-details>.price-details>h1{
+            margin-top:  10px;
+            margin-bottom:  20px;
+        }
     </style>
 </head>
 <body>
@@ -35,15 +98,64 @@
     </nav>
 
     
-    <div class="flex items-center justify-center h-screen">
-        <div>
+    <div class="body">
+        <!-- <div>
         <h1 class="text-5xl text-bold mb-8">National Fuel Pass</h1></br>
         <h1 class="text-xl">FullName: {{user.first_name}} {{user.last_name}}</h1>
         <h1 class="text-xl">Vechicle Number: {{user.vechicle_no}}</h1>
         <h1 class="text-xl">Vechicle Type: {{vechicleType.name}}</h1>
         <h1 class="text-xl">Weekly Quota: {{vechicleType.quota_limit}}</h1>
         <h1 class="text-xl">Available Quota: {{vechicleType.quota_limit |sub:user.quota_used}}</h1>
+        </div> -->
+
+        <div class="header">
+            <i class="bi bi-person-square text-3xl text-gray-700" ></i><h2 class="text-3xl text-gray-700">Hello {{user.last_name}}!</h2>
         </div>
+
+        <div class="details">
+
+            <div class="left-details">
+                <h2 class="text-2xl text-gray-600">Vechicle Number: <span class="text-pink-700">{{user.vechicle_no}}</span></h2>
+                <h2 class="text-2xl text-gray-600">Vechicle Type: <span class="text-pink-700">{{vechicleType.name}}</span></h2>
+            </div>
+
+            <div class="right-details">
+                <h2 class="text-2xl text-gray-600">Owner Name: <span class="text-pink-700">{{user.first_name}} {{user.last_name}}</span></h2>
+                <h2 class="text-2xl text-gray-600">Fuel Type: <span class="text-pink-700">{{user.fuel_type}}</span></h2>
+            </div>
+            
+        </div>
+
+        <div class="secondary-details">
+            <div class="cards-container">
+
+                <div class="card bg-pink-900">
+                    <i class="bi bi-calendar2-week"></i>
+                    <h2 class="text-white text-2xl">Weekly Quota</h2>
+                    <h2 class="text-white text-5xl litre">{{vechicleType.quota_limit}} L</h2>
+                </div>
+                <div class="card bg-blue-700">
+                    <i class="bi bi-tags"></i>
+                    <h2 class="text-white text-2xl">Used Quota</h2>
+                    <h2 class="text-white text-5xl litre">{{user.quota_used}} L</h2>
+                </div>
+                <div class="card bg-gray-500">
+                    <i class="bi bi-wallet"></i>
+                    <h2 class="text-white text-2xl">Available Quota</h2>
+                    <h2 class="text-white text-5xl litre">{{vechicleType.quota_limit |sub:user.quota_used}} L</h2>
+                </div>
+
+            </div>
+
+            <div class="price-details">
+                <h2 class="text-gray-700 text-2xl">Price Per  Litre</h2>
+                <h1 class="text-3xl text-pink-700">Rs  {{price.price}}</h1>
+                <h2 class="text-gray-700 text-2xl">Spent Amount</h2>
+                <h1 class="text-3xl text-pink-700">Rs {{user.quota_used |mul:price.price }}</h1>
+            </div>
+
+        </div>
+
     </div>
 
     <script>
