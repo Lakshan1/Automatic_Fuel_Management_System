@@ -1,0 +1,1 @@
+web: gunicorn automatic_fuel_management_system.wsgi --log-file -

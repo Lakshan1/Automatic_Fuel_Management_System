@@ -16,10 +16,7 @@ SECRET_KEY = 'django-insecure-ye01w6g95eu(7=z+7xs5pr^%j^(0yb&)f5-%(%8n5=@pzg!wcn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME: 
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -77,20 +74,16 @@ WSGI_APPLICATION = 'automatic_fuel_management_system.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 import dj_database_url
-DATABASES = {
-    'default': dj_database_url.config(     
-        default='postgres://lakshan:8q5vvKm4VhUet4Uqo39V8ScaKQKZU4aC@dpg-cdrfpuda49909bjs8h5g-a/automatic_fuel_management_system',
-        conn_max_age=600    
-    )
-}
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
