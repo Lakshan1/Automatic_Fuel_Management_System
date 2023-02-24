@@ -14,13 +14,10 @@ from .models import *
 from .decorators import unauthenticated_user
 import os
 
-account_sid = 'ACe58095480bb51e29d89a4a76ef6110c6'
-auth_token = 'de1b808cfdc2914ae80aab343f2b0e43'
-verify_sid = 'VA7bd85bed5b1a7aeffac5d6052e051a44'
 
-# account_sid = os.environ.get('Account_sid')
-# auth_token = os.environ.get('Auth_token')
-# verify_sid = os.environ.get('Service_sid')
+account_sid = os.environ.get('account_sid')
+auth_token = os.environ.get('auth_token')
+verify_sid = os.environ.get('verify_sid')
 
 client = Client(account_sid, auth_token)
 
