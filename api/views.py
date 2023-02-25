@@ -96,7 +96,7 @@ def updateFullQuota(request,vechicleno):
     else:
         vechicle.quota_used = vechicle_type.quota_limit
         vechicle.save()
-        r = requests.post("https://app.notify.lk/api/v1/send",{'user_id':os.environ.get('user_id'),'api_key':os.environ.get('api_key'),'sender_id':'NotifyDEMO','to':f'94{vechicle.phone_no}','message':"You have exceed your weekly fuel quota limit,Thank You!"})
+        r = requests.post("https://app.notify.lk/api/v1/send",{'user_id':os.environ.get('notify_user_id'),'api_key':os.environ.get('notify_api_key'),'sender_id':'NotifyDEMO','to':f'94{vechicle.phone_no}','message':"You have exceed your weekly fuel quota limit,Thank You!"})
         data = {"Message": " success"}
     return Response (data)
     
@@ -112,7 +112,7 @@ def updateQuota (request , vechicleno,quantity):
     else:
         vechicle.quota_used += quantity 
         vechicle.save()
-        r = requests.post("https://app.notify.lk/api/v1/send",{'user_id':os.environ.get('user_id'),'api_key':os.environ.get('api_key'),'sender_id':'NotifyDEMO','to':f'94{vechicle.phone_no}','message':f"Your available fuel quota is {vechicle_type.quota_limit-vechicle.quota_used}, Thank You!"})
+        r = requests.post("https://app.notify.lk/api/v1/send",{'user_id':os.environ.get('notify_user_id'),'api_key':os.environ.get('notify_api_key'),'sender_id':'NotifyDEMO','to':f'94{vechicle.phone_no}','message':f"Your available fuel quota is {vechicle_type.quota_limit-vechicle.quota_used}, Thank You!"})
         data = {"Message": " success"}
     return Response (data)
 
@@ -123,7 +123,7 @@ def refreshQuota(request):
         for obj in vechicles:
             obj.quota_used = 0
             VechicleType = VechicleTypes.objects.get(name=obj.vechicle_type)
-            r = requests.post("https://app.notify.lk/api/v1/send",{'user_id':os.environ.get('user_id'),'api_key':os.environ.get('api_key'),'sender_id':'NotifyDEMO','to':f'94{obj.phone_no}','message':f"Your weekly fuel quota has been renewed, your available quota limit is {VechicleType.quota_limit-obj.quota_used}, Thank You!"})
+            r = requests.post("https://app.notify.lk/api/v1/send",{'user_id':os.environ.get('notify_user_id'),'api_key':os.environ.get('notify_api_key'),'sender_id':'NotifyDEMO','to':f'94{obj.phone_no}','message':f"Your weekly fuel quota has been renewed, your available quota limit is {VechicleType.quota_limit-obj.quota_used}, Thank You!"})
             obj.save()
         data = {"Message": " success"}
     except:
