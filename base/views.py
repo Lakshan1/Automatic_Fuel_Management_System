@@ -15,13 +15,13 @@ from .decorators import unauthenticated_user
 import os
 
 
-# account_sid = os.environ.get('account_sid')
-# auth_token = os.environ.get('auth_token')
-# verify_sid = os.environ.get('verify_sid')
+account_sid = os.environ.get('account_sid')
+auth_token = os.environ.get('auth_token')
+verify_sid = os.environ.get('verify_sid')
 
-account_sid = "os.environ.get('account_sid')"
-auth_token = "os.environ.get('auth_token')"
-verify_sid = "os.environ.get('verify_sid')"
+# account_sid = "os.environ.get('account_sid')"
+# auth_token = "os.environ.get('auth_token')"
+# verify_sid = "os.environ.get('verify_sid')"
 
 client = Client(account_sid, auth_token)
 
