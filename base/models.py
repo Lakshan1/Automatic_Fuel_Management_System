@@ -27,7 +27,7 @@ class VechicleUsers(models.Model):
     fuel_type = models.CharField(max_length=50,null=True, blank=True)
     quota_used = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
-    last_filled_at = models.DateTimeField(null=True, blank=True)
+    last_filled_at = models.DateTimeField(auto_now=True,null=True, blank=True)
     active = models.BooleanField(default=False,null=True,blank=True)
 
     def __str__(self):
