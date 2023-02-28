@@ -12,6 +12,7 @@ from twilio.rest import Client
 
 import requests
 import os
+from datetime import datetime 
  
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -95,6 +96,7 @@ def updateFullQuota(request,vechicleno):
         data = {"Message": f"available quota is {vechicle_type.quota_limit - vechicle.quota_used}","Available_limit":f"{vechicle_type.quota_limit - vechicle.quota_used}"}
     else:
         vechicle.quota_used = vechicle_type.quota_limit
+        vechicle.last_filled_at = datetime.now()
         vechicle.save()
         r = requests.post("https://app.notify.lk/api/v1/send",{'user_id':os.environ.get('notify_user_id'),'api_key':os.environ.get('notify_api_key'),'sender_id':'NotifyDEMO','to':f'94{vechicle.phone_no}','message':"You have exceed your weekly fuel quota limit,Thank You!"})
         data = {"Message": " success"}
@@ -111,6 +113,7 @@ def updateQuota (request , vechicleno,quantity):
         data = {"Message": " Weekly quota limit exit!"}
     else:
         vechicle.quota_used += quantity 
+      vechicle.last_filled_at = datetime.now()
         vechicle.save()
         r = requests.post("https://app.notify.lk/api/v1/send",{'user_id':os.environ.get('notify_user_id'),'api_key':os.environ.get('notify_api_key'),'sender_id':'NotifyDEMO','to':f'94{vechicle.phone_no}','message':f"Your available fuel quota is {vechicle_type.quota_limit-vechicle.quota_used}, Thank You!"})
         data = {"Message": " success"}
